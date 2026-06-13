@@ -3,7 +3,7 @@
 App web instalable (PWA) para Android/Chrome con:
 
 - Rutina día por día.
-- Nutrición para recomposición corporal y prediabetes.
+- Nutrición para recomposición corporal y control metabólico.
 - Suplementación.
 - Historial de peso, cintura, pasos, energía y entrenamientos.
 - Gráficas.
