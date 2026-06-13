@@ -1,0 +1,37 @@
+:root{
+  --brand:#005357;--brand2:#00766d;--bg:#f3f6f6;--card:#fff;--text:#1f2933;--muted:#6b7780;
+  --line:#d9e2e2;--ok:#0f7b55;--warn:#b7791f;--danger:#b42318;--soft:#e7f3f2;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+.hero{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;padding:22px 16px 30px;border-bottom-left-radius:24px;border-bottom-right-radius:24px;display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.eyebrow{margin:0 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
+h1{margin:0;font-size:25px} .sub{margin:8px 0 0;font-size:14px;opacity:.95}
+.install{background:#fff;color:var(--brand);border:0;border-radius:12px;padding:10px 12px;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,.18)}
+.hidden{display:none!important}
+.tabs{position:sticky;top:0;z-index:20;display:flex;gap:8px;overflow:auto;padding:10px 12px;background:rgba(243,246,246,.92);backdrop-filter:blur(10px)}
+.tabs button,.day-selector button{border:1px solid var(--line);background:#fff;color:var(--brand);border-radius:999px;padding:9px 12px;font-weight:800;white-space:nowrap}
+.tabs button.active,.day-selector button.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+main{max-width:980px;margin:0 auto;padding:0 12px 18px}.screen{display:none}.screen.active{display:block}
+.card{background:var(--card);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.card h2{margin:0 0 10px;color:var(--brand);font-size:20px}.card h3{margin:16px 0 8px;font-size:16px}
+.grid{display:grid;gap:10px}.kpi-grid{grid-template-columns:repeat(4,1fr)}
+.kpi span,.mini span{display:block;color:var(--muted);font-size:13px}.kpi strong,.mini strong{display:block;color:var(--brand);font-size:24px;margin:4px 0}.kpi small{color:var(--muted)}
+.mini{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:12px}
+.progress-bar{height:18px;border-radius:999px;background:#e5eeee;overflow:hidden}.progress-bar div{height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--ok));border-radius:999px;transition:.3s}
+.habit-list{display:grid;gap:10px}.habit-list label,.exercise label{display:flex;gap:10px;align-items:flex-start}
+input[type=checkbox]{transform:scale(1.25);accent-color:var(--brand);margin-top:2px}
+.day-selector{display:flex;gap:8px;overflow:auto;margin-top:10px}.exercise{border:1px solid var(--line);border-radius:13px;padding:11px;margin:8px 0;background:#fbfdfd}
+.badge{display:inline-block;background:var(--soft);color:var(--brand);border-radius:999px;padding:4px 8px;font-size:12px;font-weight:800}
+.muted{color:var(--muted);font-size:14px}.warning{border-left:5px solid var(--warn);background:#fff8e6}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--brand)}
+details{margin:8px 0}summary{cursor:pointer;font-weight:800;color:var(--brand)}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}label{font-size:14px;font-weight:700;color:#334}
+input,select,textarea{width:100%;margin-top:6px;padding:11px;border:1px solid var(--line);border-radius:12px;font-size:15px;background:#fff}
+button.primary,button.secondary,button.danger,.import-label{width:100%;border:0;border-radius:12px;padding:12px;margin-top:10px;font-weight:900;font-size:15px}
+.primary{background:var(--brand);color:#fff}.secondary,.import-label{background:var(--soft);color:var(--brand);display:block;text-align:center}.danger{background:#fee4e2;color:var(--danger)}
+.import-label input{display:none}.history-row{border-bottom:1px solid var(--line);padding:10px 0}.history-row b{color:var(--brand)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.photo-card{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}.photo-card img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover}.photo-card div{padding:8px;font-size:13px}
+canvas{max-height:280px;margin:10px 0 18px}footer{text-align:center;color:var(--muted);padding:20px;font-size:12px}
+@media(max-width:780px){.hero{display:block}.install{margin-top:12px}.kpi-grid{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){h1{font-size:22px}.kpi strong,.mini strong{font-size:20px}.gallery{grid-template-columns:1fr}.tabs button{font-size:12px;padding:8px 10px}}

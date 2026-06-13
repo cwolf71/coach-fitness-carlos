@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#005357">
+  <meta name="description" content="App personal de entrenamiento, nutrición y progreso de Carlos Wolf.">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <title>Coach Fitness Carlos Wolf</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Recomposición corporal · Fase 1</p>
+      <h1>Coach Fitness Carlos Wolf</h1>
+      <p class="sub">54 años · 1.75 m · 112 kg · Prediabetes · Meta inicial: 102–104 kg</p>
+    </div>
+    <button id="installBtn" class="install hidden">Instalar app</button>
+  </header>
+
+  <nav class="tabs">
+    <button data-tab="dashboard" class="active">Inicio</button>
+    <button data-tab="training">Rutina</button>
+    <button data-tab="nutrition">Nutrición</button>
+    <button data-tab="progress">Progreso</button>
+    <button data-tab="photos">Fotos</button>
+    <button data-tab="settings">Ajustes</button>
+  </nav>
+
+  <main>
+    <section id="dashboard" class="screen active">
+      <div class="grid kpi-grid">
+        <article class="card kpi"><span>Peso actual</span><strong id="kpiWeight">112.0 kg</strong><small>Meta fase 1: 102–104 kg</small></article>
+        <article class="card kpi"><span>Cintura</span><strong id="kpiWaist">-- cm</strong><small>Indicador metabólico principal</small></article>
+        <article class="card kpi"><span>Pasos promedio</span><strong id="kpiSteps">--</strong><small>Meta: 10,000–12,000</small></article>
+        <article class="card kpi"><span>Adherencia</span><strong id="kpiAdherence">0%</strong><small>Entrenos + hábitos</small></article>
+      </div>
+
+      <article class="card">
+        <h2>Meta principal</h2>
+        <div class="progress-wrap">
+          <div class="progress-bar"><div id="goalBar"></div></div>
+          <p id="goalText">Progreso hacia 95 kg: 0%</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Checklist de hoy</h2>
+        <div class="habit-list">
+          <label><input type="checkbox" class="daily" data-key="trained"> Entrené</label>
+          <label><input type="checkbox" class="daily" data-key="steps"> 10,000 pasos</label>
+          <label><input type="checkbox" class="daily" data-key="protein"> 180 g proteína</label>
+          <label><input type="checkbox" class="daily" data-key="water"> 3.5–4 L agua</label>
+          <label><input type="checkbox" class="daily" data-key="sleep"> 7 h sueño</label>
+          <label><input type="checkbox" class="daily" data-key="walks"> Caminé 10 min después de comida/cena</label>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Gráfica de peso</h2>
+        <canvas id="weightChart"></canvas>
+      </article>
+    </section>
+
+    <section id="training" class="screen">
+      <article class="card">
+        <h2>Rutina semanal</h2>
+        <p class="muted">Descanso: lunes y jueves. Entre semana 5:00–6:00 pm. Sábado y domingo temprano. Duración objetivo: 45–60 min.</p>
+        <div class="day-selector">
+          <button data-day="martes" class="active">Martes</button>
+          <button data-day="miercoles">Miércoles</button>
+          <button data-day="viernes">Viernes</button>
+          <button data-day="sabado">Sábado</button>
+          <button data-day="domingo">Domingo</button>
+        </div>
+      </article>
+      <div id="workoutContainer"></div>
+    </section>
+
+    <section id="nutrition" class="screen">
+      <article class="card warning">
+        <h2>Nutrición para prediabetes</h2>
+        <p>Prioridad: proteína alta, fibra, verduras, carbohidrato controlado y caminata breve después de comidas. Evita azúcar líquida, jugos, refrescos, pan dulce y cenas altas en harinas.</p>
+      </article>
+
+      <article class="card">
+        <h2>Metas diarias</h2>
+        <div class="grid kpi-grid">
+          <div class="mini"><strong>180–200 g</strong><span>Proteína</span></div>
+          <div class="mini"><strong>3.5–4 L</strong><span>Agua</span></div>
+          <div class="mini"><strong>10k–12k</strong><span>Pasos</span></div>
+          <div class="mini"><strong>14/10</strong><span>Ayuno sugerido</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Horario sugerido</h2>
+        <table>
+          <tr><th>Hora</th><th>Comida</th><th>Objetivo</th></tr>
+          <tr><td>10:00</td><td>Primera comida</td><td>Proteína + fibra + grasa sana</td></tr>
+          <tr><td>14:00</td><td>Comida principal</td><td>Proteína + verduras + carbohidrato medido</td></tr>
+          <tr><td>16:30</td><td>Pre-entreno</td><td>Energía sin pico fuerte de glucosa</td></tr>
+          <tr><td>19:00</td><td>Cena</td><td>Proteína + verduras</td></tr>
+          <tr><td>20:30</td><td>Cierre</td><td>Inicio ayuno nocturno</td></tr>
+        </table>
+      </article>
+
+      <article class="card">
+        <h2>Opciones de platos</h2>
+        <details open><summary>Primera comida</summary>
+          <ul>
+            <li>4 huevos con espinaca, champiñones y ½ aguacate.</li>
+            <li>Yogur griego natural + whey + nueces + canela.</li>
+            <li>Omelette con verduras + queso panela.</li>
+          </ul>
+        </details>
+        <details open><summary>Comida</summary>
+          <ul>
+            <li>250 g pollo + ensalada grande + ½ taza arroz integral.</li>
+            <li>Carne magra + nopales + frijoles.</li>
+            <li>Pescado/salmón + camote pequeño + brócoli.</li>
+          </ul>
+        </details>
+        <details open><summary>Pre-entreno</summary>
+          <ul>
+            <li>Yogur griego natural + canela.</li>
+            <li>Shake de proteína + 10–15 almendras.</li>
+            <li>2 huevos + 1 tortilla de maíz.</li>
+          </ul>
+        </details>
+        <details open><summary>Cena</summary>
+          <ul>
+            <li>250 g pescado o pollo + verduras.</li>
+            <li>Omelette con verduras + aguacate.</li>
+            <li>Ensalada grande con atún, pollo o salmón.</li>
+          </ul>
+        </details>
+      </article>
+
+      <article class="card">
+        <h2>Suplementos</h2>
+        <p class="muted">Consulta con tu médico si tomas medicamentos para glucosa, presión, anticoagulantes o tienes enfermedad renal/hepática.</p>
+        <table>
+          <tr><th>Suplemento</th><th>Dosis</th><th>Momento</th></tr>
+          <tr><td>Creatina monohidratada</td><td>5 g</td><td>Diario</td></tr>
+          <tr><td>Whey sin azúcar</td><td>1 scoop</td><td>Post-entreno o para completar proteína</td></tr>
+          <tr><td>Omega 3</td><td>2 g EPA+DHA</td><td>Con comida</td></tr>
+          <tr><td>Vitamina D3</td><td>2,000 UI</td><td>Con comida</td></tr>
+          <tr><td>Magnesio glicinato</td><td>300–400 mg</td><td>Antes de dormir</td></tr>
+          <tr><td>Electrolitos sin azúcar</td><td>1 porción</td><td>Al despertar o entrenar</td></tr>
+        </table>
+      </article>
+    </section>
+
+    <section id="progress" class="screen">
+      <article class="card">
+        <h2>Registrar progreso</h2>
+        <div class="form-grid">
+          <label>Fecha<input id="logDate" type="date"></label>
+          <label>Peso kg<input id="logWeight" type="number" step="0.1" placeholder="112.0"></label>
+          <label>Cintura cm<input id="logWaist" type="number" step="0.1" placeholder="cm"></label>
+          <label>Pasos<input id="logSteps" type="number" placeholder="10000"></label>
+          <label>Energía 1–10<input id="logEnergy" type="number" min="1" max="10"></label>
+          <label>Entrenos semana<input id="logWorkouts" type="number" min="0" max="5"></label>
+        </div>
+        <label>Notas<textarea id="logNotes" rows="3" placeholder="Sueño, hambre, molestias, cargas, adherencia..."></textarea></label>
+        <button class="primary" id="saveLog">Guardar registro</button>
+      </article>
+
+      <article class="card">
+        <h2>Gráficas</h2>
+        <canvas id="waistChart"></canvas>
+        <canvas id="stepsChart"></canvas>
+      </article>
+
+      <article class="card">
+        <h2>Historial</h2>
+        <div id="historyTable"></div>
+      </article>
+    </section>
+
+    <section id="photos" class="screen">
+      <article class="card">
+        <h2>Fotos de progreso</h2>
+        <p class="muted">Guarda frente, perfil y espalda cada 4 semanas. Las fotos se guardan localmente en este dispositivo.</p>
+        <div class="form-grid">
+          <label>Fecha<input id="photoDate" type="date"></label>
+          <label>Tipo
+            <select id="photoType">
+              <option>Frente</option>
+              <option>Perfil</option>
+              <option>Espalda</option>
+            </select>
+          </label>
+        </div>
+        <input id="photoInput" type="file" accept="image/*">
+        <button class="primary" id="savePhoto">Guardar foto</button>
+      </article>
+      <article class="card">
+        <h2>Galería</h2>
+        <div id="photoGallery" class="gallery"></div>
+      </article>
+    </section>
+
+    <section id="settings" class="screen">
+      <article class="card">
+        <h2>Metas y datos base</h2>
+        <div class="form-grid">
+          <label>Peso inicial<input id="setStartWeight" type="number" step="0.1"></label>
+          <label>Peso meta<input id="setGoalWeight" type="number" step="0.1"></label>
+          <label>Meta de pasos<input id="setStepGoal" type="number"></label>
+          <label>Meta proteína g<input id="setProteinGoal" type="number"></label>
+        </div>
+        <button class="primary" id="saveSettings">Guardar metas</button>
+      </article>
+
+      <article class="card">
+        <h2>Respaldo</h2>
+        <button class="secondary" id="exportData">Exportar datos JSON</button>
+        <label class="import-label">Importar respaldo<input id="importData" type="file" accept="application/json"></label>
+        <button class="danger" id="clearData">Borrar todos los datos</button>
+      </article>
+
+      <article class="card">
+        <h2>Instalación</h2>
+        <ol>
+          <li>Sube esta carpeta completa a GitHub Pages.</li>
+          <li>Abre la URL pública en Chrome Android.</li>
+          <li>Cuando aparezca el botón <b>Instalar app</b>, presiónalo.</li>
+          <li>También puedes usar menú ⋮ → <b>Instalar aplicación</b>.</li>
+        </ol>
+      </article>
+    </section>
+  </main>
+
+  <footer>Coach Fitness Carlos Wolf · PWA local-first</footer>
+  <script src="./app.js"></script>
+</body>
+</html>
